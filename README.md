@@ -1,4 +1,4 @@
-MKNQR &2014; a QR-Code Generator
+MKNQR - a QR-Code Generator
 ================================
 
 Image
