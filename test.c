@@ -2,16 +2,26 @@
 
 int main(void)
 {
-  polynom f;
+  polynom f, g;
 
   InitPolynom(&f);
-  SetPolynom(&f, 3, 3, 2, 1);
+  InitPolynom(&g);
+  
+  SetPolynom(&f, 4, 0, 1, 0, 1);
+  SetPolynom(&g, 11, 1, 1, 1, 0, 1, 1, 0, 0, 1, 0, 1);
   PrintPolynom(&f);
-  ShiftPolynom(&f, 4);
+
+  ShiftPolynom(&f, 10);
   PrintPolynom(&f);
-  xPolynom(&f, 3);
+
+  PrintPolynom(&g);
+  
+  ModPolynom(&f, &g);
   PrintPolynom(&f);
+
   ClearPolynom(&f);
+  ClearPolynom(&g);
+
   return 0;
 }
 
