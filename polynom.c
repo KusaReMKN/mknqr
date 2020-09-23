@@ -164,3 +164,20 @@ int MulPolynom(polynom *dest, polynom *src)
   return 0;
 }
 
+int ModPolynom(polynom *dest, polynom *src)
+{
+  polynom tmp;
+
+  if (MaxDimension(src) == 0u && src->coeff[0] == 0) { return -1; }
+
+  InitPolynom2(&tmp, dest->dim);
+  while (MaxDimension(src) <= MaxDimension(dest)) {
+    CopyPolynom(&tmp, src);
+    ShiftPolynom(&tmp, MaxDimension(dest) - MaxDimension(src));
+    xPolynom(&tmp, dest->coeff[MaxDimension(dest)] / src->coeff[MaxDimension(src)]);
+    SubPolynom(dest, &tmp);
+  }
+  ClearPolynom(&tmp);
+
+  return 0;
+}

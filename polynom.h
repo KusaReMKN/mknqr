@@ -47,4 +47,7 @@ int PrintPolynom(polynom *);
 
 // 多項式同士の掛け算
 int MulPolynom(polynom *, polynom *);
+
+// 多項式同士の剰余
+int ModPolynom(polynom *, polynom *);
 #endif /* __POLYNOM_H__ */
