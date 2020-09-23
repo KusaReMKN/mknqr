@@ -135,3 +135,32 @@ int PrintPolynom(polynom *pp)
 
   return 0;
 }
+
+int MulPolynom(polynom *dest, polynom *src)
+{
+  polynom res, tmp;
+
+  if (dest->dim < MaxDimension(dest) + MaxDimension(src)) { return -1; }
+
+  InitPolynom2(&res, dest->dim);
+  InitPolynom2(&tmp, dest->dim);
+  SetPolynom(&res, 0);
+  CopyPolynom(&tmp, dest);
+
+  for (size_t l = 0; l < MaxDimension(src) + 1; l++) {
+    if (!src->coeff[l]) { continue; }
+
+    CopyPolynom(&tmp, dest);
+    ShiftPolynom(&tmp, l);
+    xPolynom(&tmp, src->coeff[l]);
+    AddPolynom(&res, &tmp);
+  }
+
+  CopyPolynom(dest, &res);
+
+  ClearPolynom(&tmp);
+  ClearPolynom(&res);
+
+  return 0;
+}
+

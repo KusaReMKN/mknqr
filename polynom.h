@@ -45,4 +45,6 @@ int ShiftPolynom(polynom *, size_t);
 // 多項式の表示
 int PrintPolynom(polynom *);
 
+// 多項式同士の掛け算
+int MulPolynom(polynom *, polynom *);
 #endif /* __POLYNOM_H__ */
