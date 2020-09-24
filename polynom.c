@@ -85,6 +85,17 @@ int SubPolynom(polynom *dest, polynom *src)
   return 0;
 }
 
+int XorPolynom(polynom *dest, polynom *src)
+{
+  if (dest->dim < src->dim) { return -1; }
+
+  for (size_t l = 0; l < src->dim; l++) {
+    dest->coeff[l] ^= src->coeff[l];
+  }
+
+  return 0;
+}
+
 int xPolynom(polynom *pp, int k)
 {
   for (size_t l = 0; l < pp->dim; l++) {

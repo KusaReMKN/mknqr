@@ -33,6 +33,9 @@ int CopyPolynom(polynom *, polynom *);
 int AddPolynom(polynom *, polynom *);
 int SubPolynom(polynom *, polynom *);
 
+// 多項式の XOR
+int XorPolynom(polynom *, polynom *);
+
 // 多項式の k 倍
 int xPolynom(polynom *, int);
 
