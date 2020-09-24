@@ -252,8 +252,6 @@ int ModAlphaPolynom(polynom *dest, polynom *src)
     xAlphaPolynom(&tmp, int2alpha(dest->coeff[MaxDimension(dest)]) - src->coeff[(MaxDimensionAlpha(src))]);
     ShiftAlphaPolynom(&tmp, MaxDimension(dest) - MaxDimensionAlpha(src));
     Alpha2Polynom(&tmp);
-    PrintPolynom(&tmp);
-    (void) getchar();
     XorPolynom(dest, &tmp);
   }
   ClearPolynom(&tmp);
