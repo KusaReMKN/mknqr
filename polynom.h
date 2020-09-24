@@ -10,7 +10,7 @@
 #include "alpha.h"
 
 // 多項式のデフォルト最大次元
-extern int DIMENSION;
+extern size_t DIMENSION;
 
 // 多項式型
 typedef struct _polynom_t {

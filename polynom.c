@@ -1,6 +1,6 @@
 #include "polynom.h"
 
-int DIMENSION = 4096;
+size_t DIMENSION = 4096;
 
 int InitPolynom(polynom *pp)
 {
