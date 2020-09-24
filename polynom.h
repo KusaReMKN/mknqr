@@ -69,6 +69,9 @@ int Alpha2Polynom(polynom *);
 // 多項式をα多項式で割ったあまり
 int ModAlphaPolynom(polynom *, polynom *);
 
+// x^n 倍
+int ShiftAlphaPolynom(polynom *, size_t);
+
 // 多項式のセット
 int SetAlphaPolynom(polynom *, size_t, ...);
 int SetAlphaPolynom2(polynom *, size_t, int *);
