@@ -12,7 +12,7 @@ int InitPolynom2(polynom *pp, size_t len)
   polynom tmp = { 0, NULL };
 
   tmp.dim = len;
-  tmp.coeff = calloc(tmp.dim, sizeof(int));
+  tmp.coeff = (int *)calloc(tmp.dim, sizeof(int));
   if (tmp.coeff) {
     *pp = tmp;
     return 0;
