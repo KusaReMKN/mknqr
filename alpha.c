@@ -40,7 +40,7 @@ int int2alpha(int n)
   return (n < 0 || 255 < n) ? -1 : buf[n];
 }
 
-int alpha2int(int a)
+int alpha2int(int n)
 {
   const int const buf[] = {
        1,   2,   4,   8,  16,  32,  64, 128,
@@ -77,7 +77,8 @@ int alpha2int(int a)
       27,  54, 108, 216, 173,  71, 142,   1,
   };
 
-  for (; n > 255; n -= 255);
+  if (n == -1) { return 0; }
+  n %= 255;
   return (n < 0) ? -1 : buf[n];
 }
 
