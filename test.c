@@ -7,16 +7,16 @@ int main(void)
   InitPolynom(&f);
   InitPolynom(&g);
   
-  SetPolynom(&f, 4, 0, 1, 0, 1);
-  SetPolynom(&g, 11, 1, 1, 1, 0, 1, 1, 0, 0, 1, 0, 1);
+  SetPolynom(&f, 9, 236, 128, 46, 220, 41, 69, 205, 65, 32);
+  SetAlphaPolynom(&g, 18, 136, 163, 243, 39, 150, 99, 24, 147, 214, 206, 123, 239, 43, 78, 206, 139, 43, 0);
   PrintPolynom(&f);
 
-  ShiftPolynom(&f, 10);
+  ShiftPolynom(&f, 17);
   PrintPolynom(&f);
 
-  PrintPolynom(&g);
+  PrintAlphaPolynom(&g);
   
-  ModPolynom(&f, &g);
+  ModAlphaPolynom(&f, &g);
   PrintPolynom(&f);
 
   ClearPolynom(&f);
