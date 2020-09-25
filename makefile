@@ -1,5 +1,6 @@
 
 CC = gcc
+CFLAGS = -Wall
 OBJ = main.o polynom.o alpha.o
 VPATH = src
 PROGRAM = mknqr
