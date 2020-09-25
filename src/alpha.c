@@ -2,7 +2,7 @@
 
 int int2alpha(int n)
 {
-  const int const buf[] = {
+  const int buf[] = {
       -1,   0,   1,  25,   2,  50,  26, 198,
        3, 223,  51, 238,  27, 104, 199,  75,
        4, 100, 224,  14,  52, 141, 239, 129,
@@ -42,7 +42,7 @@ int int2alpha(int n)
 
 int alpha2int(int n)
 {
-  const int const buf[] = {
+  const int buf[] = {
        1,   2,   4,   8,  16,  32,  64, 128,
       29,  58, 116, 232, 205, 135,  19,  38,
       76, 152,  45,  90, 180, 117, 234, 201,
