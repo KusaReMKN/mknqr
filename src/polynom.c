@@ -249,7 +249,8 @@ int ModAlphaPolynom(polynom *dest, polynom *src)
   InitPolynom2(&tmp, dest->dim);
   while (MaxDimensionAlpha(src) <= MaxDimension(dest)) {
     CopyPolynom(&tmp, src);
-    xAlphaPolynom(&tmp, int2alpha(dest->coeff[MaxDimension(dest)]) - src->coeff[(MaxDimensionAlpha(src))]);
+    xAlphaPolynom(&tmp,
+        int2alpha(dest->coeff[MaxDimension(dest)]) - src->coeff[(MaxDimensionAlpha(src))]);
     ShiftAlphaPolynom(&tmp, MaxDimension(dest) - MaxDimensionAlpha(src));
     Alpha2Polynom(&tmp);
     XorPolynom(dest, &tmp);
