@@ -139,7 +139,7 @@ int PrintPolynom(polynom *pp)
 {
   for (size_t l = MaxDimension(pp) + 1; l > 0; l--) {
     if (pp->coeff[l-1]) {
-      printf("%+dx^%u ", pp->coeff[l-1], l-1);
+      printf("%+dx^%zu ", pp->coeff[l-1], l-1);
     }
   }
   putchar('\n');
@@ -293,7 +293,7 @@ int PrintAlphaPolynom(polynom *pp)
 {
   for (size_t l = MaxDimension(pp) + 1; l > 0; l--) {
     if (~pp->coeff[l-1]) {
-      printf("+α^%dx^%u ", pp->coeff[l-1], l-1);
+      printf("+α^%dx^%zu ", pp->coeff[l-1], l-1);
     }
   }
   putchar('\n');
