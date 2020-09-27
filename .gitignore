@@ -1,2 +1,5 @@
 # o いらない
 *.o
+
+# makefile が依存関係を記述するためのファイルだよ
+depend.inc
