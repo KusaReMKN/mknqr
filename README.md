@@ -36,7 +36,7 @@ By Space Rabbit
    :   \       /   ;   |    Meybe.  Yeah.           |
     `\`========='/'    `---------------------------'
     .' .-------. `.
-   /   |       |   \    See, they say so too.
+   /   |       |   \    Look, they say so too.
    |   |       |   |
    |  ||       ||  |
    |  ||       ||  |
