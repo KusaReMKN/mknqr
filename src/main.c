@@ -1,27 +1,40 @@
-#include "polynom.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <locale.h>
 
-int main(void)
+#define _GNU_SOURCE
+#include <getopt.h>
+
+#define MAJOR 0
+#define MINOR 0
+
+static struct option longopts[] = {
+  {"help",    no_argument, NULL, 'h'},
+  {"version", no_argument, NULL, 'v'},
+  {0, 0, 0, 0}
+};
+
+int main(int argc, char *argv[])
 {
-  polynom f, g;
+  int opt;
 
-  InitPolynom(&f);
-  InitPolynom(&g);
-  
-  SetPolynom(&f, 9, 236, 128, 46, 220, 41, 69, 205, 65, 32);
-  SetAlphaPolynom(&g, 18, 136, 163, 243, 39, 150, 99, 24, 147, 214, 206, 123, 239, 43, 78, 206, 139, 43, 0);
-  PrintPolynom(&f);
-
-  ShiftPolynom(&f, 17);
-  PrintPolynom(&f);
-
-  PrintAlphaPolynom(&g);
-  
-  ModAlphaPolynom(&f, &g);
-  PrintPolynom(&f);
-
-  ClearPolynom(&f);
-  ClearPolynom(&g);
+  while (~(opt = getopt_long(argc, argv, "vh", longopts, NULL))) {
+    switch (opt) {
+    case 'v':
+      printf("%s Version %1d.%02d\n", argv[0], MAJOR, MINOR);
+      exit(EXIT_SUCCESS);
+      /* NOTREACHED */
+    case 'h':
+      printf("Usage:\n    %s [options] [string]\n\n", argv[0]);
+      printf("    -h, --help\t\tshow list of command-line options\n");
+      printf("    -v, --version\t\tshow version\n");
+      exit(EXIT_SUCCESS);
+      /* NOTREACHED */
+    case '?':
+      exit(EXIT_FAILURE);
+      /* NOTREACHED */
+    }
+  }
 
   return 0;
 }
-
