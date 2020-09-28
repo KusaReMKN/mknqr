@@ -5,6 +5,7 @@ OBJS = main.o polynom.o alpha.o
 VPATH = src
 PROGRAM = mknqr
 DEPEND = depend.inc
+SHELL = /bin/sh
 
 # プライマリターゲット
 .PHONY: all
