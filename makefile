@@ -1,7 +1,7 @@
 # 各種マクロ (再)定義
 CC = gcc
 CFLAGS = -Wall
-OBJS = main.o polynom.o alpha.o
+OBJS = main.o polynom.o alpha.o qr.o
 VPATH = src
 PROGRAM = mknqr
 DEPEND = depend.inc
