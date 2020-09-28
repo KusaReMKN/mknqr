@@ -53,7 +53,7 @@ void version(const char *cmd)
   printf((
         "%s Version %1d.%02d\n"
         "Copyright (c) 2020 KusaReMKN\n"
-        ), cmd, MAJOR, MINOR)
+        ), cmd, MAJOR, MINOR);
 }
 
 void help(const char *cmd)
