@@ -65,6 +65,11 @@ int main(int argc, char *argv[])
     }
   }
 
+  if (optind == argc) {
+    printf("string not specified\n");
+    exit(EXIT_FAILURE);
+  }
+
   Mode = GetMode(argv[optind]);
 
   printf("ECLevel: %c, QRVersion: %d\n", ECLevel, QRVersion);
