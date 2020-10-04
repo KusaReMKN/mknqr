@@ -1,0 +1,139 @@
+<!doctype html>
+<html>
+<head>
+<meta charset='UTF-8'><meta name='viewport' content='width=device-width initial-scale=1'>
+<title>polynom</title></head>
+<body><h1>多項式演算関数群</h1>
+<h2>多項式型</h2>
+<p>多項式を表す型として <code>polynom</code> 型を利用する。
+<code>polynom</code> 型は以下のように宣言されている。</p>
+<pre><code>typedef struct _polynom_t {
+  size_t  dim;    // 多項式の表現可能な次元数
+  int    *coeff;  // 多項式の各係数が格納されている配列へのポインタ
+} polynom;
+</code></pre>
+<h2>多項式の初期化・解放</h2>
+<p>多項式は使用する前に初期化されなければならない。
+多項式を初期化するもっとも簡単な方法は <code>InitPolynom</code> 関数を利用することである。</p>
+<pre><code>int InitPolynom(polynom *pp);
+</code></pre>
+<p><code>InitPolynom</code> 関数には初期化する多項式へのポインタ <code>pp</code> を渡す。
+<code>InitPolynom</code> 関数は、多項式が表現可能な次元数に広域変数 <code>DIMENSION</code>
+の値を利用する。
+初期化に成功すると <code>0</code> を、失敗すると <code>-1</code> を返す。</p>
+<p>多項式が表現可能な次元数を指定しながら多項式を初期化するには <code>InitPolynom2</code>
+ 関数を利用する。</p>
+<pre><code>int InitPolynom2(polynom *pp, size_t len);
+</code></pre>
+<p><code>InitPolynom2</code> 関数は多項式の表現可能な次元数を <code>len</code> に設定すること以外は
+<code>InitPolynom</code> 関数と同様である。
+<code>InitPolynom(pp)</code> は <code>InitPolynom2(pp, DIMENSION)</code> と全く同じである。</p>
+<p>使用の終了した多項式はなるべく早く解放されなければならない。
+多項式を解放するには <code>ClearPolynom</code> 関数を利用する。</p>
+<pre><code>int ClearPolynom(polynom *pp);
+</code></pre>
+<p><code>ClearPolynom</code> 関数には解放する多項式へのポインタ <code>pp</code> を渡す。
+<code>ClearPolynom</code> 関数は常に <code>0</code> を返す。
+初期化されていない多項式を <code>ClearPolynom</code> 関数に渡したときの動作は不定である。</p>
+<h2>多項式のセット・コピー</h2>
+<p>多項式の係数を設定する方法の一つは <code>SetPolynom</code> 関数を利用することである。</p>
+<pre><code>int SetPolynom(polynom *pp, size_t len, ...);
+</code></pre>
+<p><code>SetPolynom</code> 関数には係数を設定する多項式へのポインタ <code>pp</code>
+と係数を設定する次元数 <code>len</code>、それに続いて各係数の値を <code>int</code>
+で昇べきの順で渡す。
+係数の設定に成功すると <code>0</code> を、失敗すると <code>-1</code> を返す。
+失敗の主な理由は多項式の表現可能な次元数が足りないことである。
+<code>len</code> の値を 0 で渡すことですべての係数を 0 に設定することができる。</p>
+<p>例えば、 $ f(x) = 3x^2 -5x +2 $ を表現するには以下のように実行する。</p>
+<pre><code>polynom f;
+InitPolynom(f);
+SetPolynom(&amp;f, (size_t) 3, 2, -5, 3);
+</code></pre>
+<p>多項式の係数を設定するもう一つの方法は <code>SetPolynom2</code> 関数を利用することである。</p>
+<pre><code>int SetPolynom2(polynom *pp, size_t len, int *v);
+</code></pre>
+<p><code>SetPolynom2</code> 関数は係数のリストを可変引数の代わりに配列で渡すこと以外は
+<code>SetPolynom</code> 関数と同様である。</p>
+<p>多項式をコピーするには <code>CopyPolynom</code> 関数を利用する。</p>
+<pre><code>int CopyPolynom(polynom *dest, polynom *src);
+</code></pre>
+<p><code>CopyPolynom(pp1, pp2)</code> は <code>SetPolynom2(pp1, pp2-&gt;dim, pp2-&gt;coeff)</code>
+と全く同じである。</p>
+<h2>多項式の加減算</h2>
+<p>多項式の加算をするには <code>AddPolynom</code> 関数を利用する。</p>
+<pre><code>int AddPolynom(polynom *dest, polynom *src);
+</code></pre>
+<p><code>AddPolynom</code> 関数には多項式へのポインタ <code>dest</code> と <code>src</code> を渡す。
+<code>AddPolynom</code> 関数は成功すると <code>0</code> を、失敗すると <code>-1</code> を返す。
+多項式 <code>dest</code> は多項式 <code>dest</code> と多項式 <code>src</code> を足し合わせたものに上書きされる。</p>
+<p>多項式の減算をするには <code>SubPolynom</code> 関数を利用する。</p>
+<pre><code>int SubPolynom(polynom *dest, polynom *src);
+</code></pre>
+<p><code>SubPolynom</code> 関数は減算を行うこと以外は <code>AddPolynom</code> 関数と同様である。</p>
+<h2>多項式の排他的論理和</h2>
+<p>多項式の各係数ごとの排他的論理和を計算するには <code>XorPolynom</code> 関数を利用する。</p>
+<pre><code>int XorPolynom(polynom *dest, polynom *src);
+</code></pre>
+<p><code>XorPolynom</code> 関数は排他的論理和を計算すること以外は <code>AddPolynom</code>
+関数と同様である。</p>
+<h2>多項式の整数倍</h2>
+<p>多項式を整数倍するには <code>xPolynom</code> 関数を利用する。</p>
+<pre><code>int xPolynom(polynom *pp, int k);
+</code></pre>
+<p><code>xPolynom</code> 関数には多項式へのポインタ <code>pp</code> と係数 <code>k</code> を渡す。
+<code>xPolynom</code> 関数は常に <code>0</code> を返す。</p>
+<h2>多項式の最大次元数</h2>
+<p>多項式の最大次元数を求めるには <code>MaxDimension</code> 関数を利用する。</p>
+<pre><code>size_t MaxDimension(polynom *pp);
+</code></pre>
+<p><code>MaxDimension</code> 関数には多項式へのポインタ <code>pp</code> を渡す。
+<code>MaxDimension</code> 関数は渡された多項式の最大次元数を返す。
+渡された多項式の値が 0 の場合は <code>0</code> を返す (定数式 0x^0 とみなす)。</p>
+<h2>多項式の x^n 倍</h2>
+<p>多項式を x^n 倍するには <code>ShiftPolynom</code> 関数を利用する。</p>
+<pre><code>int ShiftPolynom(polynom *pp, size_t n);
+</code></pre>
+<p><code>ShiftPolynom</code> 関数には多項式へのポインタ <code>pp</code> と x の指数 <code>n</code> を渡す。
+<code>ShiftPolynom</code> 関数は成功すると <code>0</code> を、失敗すると <code>-1</code> を返す。</p>
+<h2>多項式の乗算</h2>
+<p>多項式同士を乗算するには <code>MulPolynom</code> 関数を利用する。</p>
+<pre><code>int MulPolynom(polynom *dest, polynom *src);
+</code></pre>
+<p><code>MulPolynom</code> 関数には多項式へのポインタ <code>dest</code> と <code>src</code> を渡す。
+<code>MulPolynom</code> 関数は成功すると <code>0</code> を、失敗すると <code>-1</code> を返す。
+係数のオーバーフローに注意すること。</p>
+<h2>多項式の剰余</h2>
+<p>多項式の剰余を計算するには <code>ModPolynom</code> 関数を利用する。</p>
+<pre><code>int ModPolynom(polynom *dest, polynom *src);
+</code></pre>
+<p><code>ModPolynom</code> 関数には多項式へのポインタ <code>dest</code> と <code>src</code> を渡す。
+<code>ModPolynom</code> 関数は成功すると <code>0</code> を、失敗すると <code>-1</code> を返す。
+失敗の主な理由は <code>src</code> の値が 0 であることである。</p>
+<h2>多項式の表示</h2>
+<p>多項式を標準出力に表示するには <code>PrintPolynom</code> 関数を利用する。</p>
+<pre><code>int PrintPolynom(polynom *pp);
+</code></pre>
+<p><code>PrintPolynom</code> 関数には多項式へのポインタ <code>pp</code> を渡す。
+<code>PrintPolynom</code> 関数は常に <code>0</code> を返す。
+多項式は降べきの順に、係数が 0 でないもののみが表示され、改行される
+(多項式のすべての係数が 0 の場合は単に改行される)。</p>
+<h2>α のべき乗表示</h2>
+<p>リード・ソロモン符号などで利用する α のべき乗表記に対応した演算関数もある。
+これらの関数は係数を α
+のべき乗表記として扱う以外は対応する通常の多項式演算関数と同様である。</p>
+<pre><code>size_t MaxDimensionAlpha(polynom *pp);
+int xAlphaPolynom(polynom *pp, int k);
+int ShiftAlphaPolynom(polynom *pp, size_t n);
+int ModPolynom(polynom *dest, polynom *src);
+int SetAlphaPolynom(polynom *pp, size_t len, ...);
+int SetAlphaPolynom2(polynom *pp, size_t len, int *v);
+int PrintAlphaPolynom(polynom *pp);
+</code></pre>
+<p>α のべき乗表記から通常の多項式に変換するには <code>Alpha2Polynom</code> 関数を利用する。</p>
+<pre><code>int Alpha2Polynom(polynom *pp);
+</code></pre>
+<p><code>Alpha2Polynom</code> 関数には多項式へのポインタ <code>pp</code> を渡す。
+<code>Alpha2Polynom</code> 関数は常に <code>0</code> を返す。</p>
+</body>
+</html>
