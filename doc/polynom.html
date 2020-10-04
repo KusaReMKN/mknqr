@@ -47,7 +47,7 @@
 <code>len</code> の値を 0 で渡すことですべての係数を 0 に設定することができる。</p>
 <p>例えば、 $ f(x) = 3x^2 -5x +2 $ を表現するには以下のように実行する。</p>
 <pre><code>polynom f;
-InitPolynom(f);
+InitPolynom(&amp;f);
 SetPolynom(&amp;f, (size_t) 3, 2, -5, 3);
 </code></pre>
 <p>多項式の係数を設定するもう一つの方法は <code>SetPolynom2</code> 関数を利用することである。</p>

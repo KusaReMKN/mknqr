@@ -62,7 +62,7 @@
 例えば、 $ f(x) = 3x^2 -5x +2 $ を表現するには以下のように実行する。
 
     polynom f;
-    InitPolynom(f);
+    InitPolynom(&f);
     SetPolynom(&f, (size_t) 3, 2, -5, 3);
 
 多項式の係数を設定するもう一つの方法は `SetPolynom2` 関数を利用することである。
