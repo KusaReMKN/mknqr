@@ -70,7 +70,7 @@ int main(int argc, char *argv[])
     exit(EXIT_FAILURE);
   }
 
-  Mode = GetMode(argv[optind]);
+  Mode = CheckMode(argv[optind], 0);
 
   printf("ECLevel: %c, QRVersion: %d\n", ECLevel, QRVersion);
   printf("str: %s, Mode: %02X\n", argv[optind], Mode);
